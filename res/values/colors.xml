@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <color name="transparent">#00000000</color>
+    <color name="background">#F4F4F4</color>
+    <color name="white">#FFFFFF</color>
+    <color name="title">#262626</color>
+    <color name="hong">#dc0139</color>
+    <color name="lan">#3094f2</color>
+    <color name="black">#000000</color>
+    <color name="main_n">#1b1815</color>
+    <color name="main_p">#de003b</color>
+    <color name="main_n1">#989797</color>
+    <color name="main_p1">#fad9e2</color>
+    <color name="xian">#dcdcdc</color>
+    <color name="center_top">#5fb8da</color>
+    <color name="center_top_hui">#3c6674</color>
+    <color name="word_black">#383838</color>
+    <color name="set_hui">#2e2e2e</color>
+    <color name="pwd_hui">#d5d5d5</color>
+    <color name="fenlei_sel">#f7f7f7</color>
+        
+    <color name="status_hong">#dc0139</color>
+    <color name="status_hui">#7b7b7b</color>
+    <color name="status_xian">#df003b</color>
+    
+    <color name="score_plus">#f46f2c</color>
+    <color name="score_minus">#6a9b28</color>
+    
+    <color name="title_hui">#959595</color>
+    <color name="city_sel">#a0a0a0</color>
+    <color name="shop_hui1">#727272</color>
+    <color name="shop_hui2">#535353</color>
+    <color name="map_pop_sel">#f1f1f1</color>
+    <color name="empty">#a0a0a0</color>
+    <color name="type_normal">#9d9d9d</color>
+    <color name="qianhui">#b8b8b8</color>
+    <color name="hui">#979797</color>
+    <color name="shenhui">#777777</color>
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#c0000000</color>
+    <color name="possible_result_points">#c0F15C3B</color>
+    <color name="zise">#F15C3B</color>
+    <color name="scan_hui">#9B9B9B</color>
+    <color name="notice_hui">#424242</color>
+    <color name="green">#46D9BF</color>
+
+    
+    <color name="custom_header_text">#8a6463</color>
+    <color name="custom_selected">#A8D324</color>
+    <color name="custom_background">#F0F8DB</color>
+    <color name="custom_background_today">#de003b</color>
+    <color name="custom_background_disabled">#F0F8DB</color>
+    <color name="custom_text_selected">#FFFFFFFF</color>
+    <color name="custom_text_inactive">#7f778088</color>
+    <color name="calendar_active_month_bg">#fff5f7f9</color>
+    <color name="calendar_bg">#ffffffff</color>
+    <!-- <color name="calendar_divider">#ffbababa</color> -->
+    <color name="calendar_inactive_month_bg">#ffd7d9db</color>
+    <color name="calendar_selected_day_bg">#ff379bff</color>
+    <color name="calendar_highlighted_day_bg">#ccffcc</color>
+    <!-- <color name="calendar_selected_range_bg">#ff96caff</color> -->
+    <color name="calendar_selected_range_bg">#fffff0f5</color>
+    <color name="calendar_text_inactive">#40778088</color>
+    <color name="calendar_text_active">#896565</color>
+    <color name="calendar_text_active1">#896565</color>
+    <color name="calendar_text_selected">#ffffffff</color>
+    <color name="calendar_text_unselectable">#7f778088</color>
+    <color name="timebackground">#D5D9DF</color>
+     <color name="timeline">#BDC1C7</color>
+    <color name="province_line_border">#C7C7C7</color>
+     
+     
+     
+    <color name="main_blue">#00A1D8</color>
+    <color name="main_orange">#F40</color>
+    <color name="light_blue">#F44</color>
+    <color name="blue_line">#00CDEC</color>
+    <color name="grey_line">#D2D2D2</color>
+    <color name="btn_green">#46D9BF</color>
+    <color name="green_dark">#46BEBF</color>
+    <color name="orange">#FEAF00</color>
+    <color name="main_title_grey">#E5E9EA</color>
+    <color name="picker_bg">#e0e0e0</color>
+</resources>
