@@ -1,6 +1,9 @@
 package com.hemaapp.demo.activity;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.PopupMenu.OnMenuItemClickListener;
@@ -8,12 +11,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.example.hm_m_demo.R;
-import com.hemaapp.demo.MyActivity;
+import com.hemaapp.demo.MyFragmentActivity;
 import com.hemaapp.demo.adapter.MyAdapter;
-import com.hemaapp.demo.view.MyRecyclerView;
+import com.hemaapp.demo.adapter.RecyclerViewAdapter;
 import com.hemaapp.hm_FrameWork.HemaNetTask;
 import com.hemaapp.hm_FrameWork.result.HemaBaseResult;
 
@@ -23,9 +27,12 @@ import com.hemaapp.hm_FrameWork.result.HemaBaseResult;
  * @author HuFanglin
  *
  */
-public class RecyclerViewActivity extends MyActivity{
+public class RecyclerViewActivity extends MyFragmentActivity{
+	private final int LENGTH = 10;
 	private RecyclerView recyclerView;
 	private TextView txtNext, txtTitle; 
+	private ViewPager viewPager;
+	private MyAdapter adapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_recyclerview);
@@ -67,9 +74,11 @@ public class RecyclerViewActivity extends MyActivity{
 	@Override
 	protected void findView() {
 		txtNext = (TextView)findViewById(R.id.txtNext);
-		txtNext.setText("菜单测试");
+		txtNext.setText("菜单");
 		txtTitle = (TextView)findViewById(R.id.txtTitle);
 		txtTitle.setText("RecyclerView");
+		viewPager = (ViewPager)findViewById(R.id.viewPager);
+		viewPager.setAdapter(new RecyclerViewAdapter(getSupportFragmentManager(), LENGTH));
 		recyclerView = (RecyclerView)findViewById(R.id.recyclerview_vertical);
 		 // 创建一个线性布局管理器
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -79,14 +88,15 @@ public class RecyclerViewActivity extends MyActivity{
         recyclerView.setLayoutManager(layoutManager);
 
         // 创建数据集
-        String[] dataset = new String[100];
+        String[] dataset = new String[LENGTH];
         for (int i = 0; i < dataset.length; i++){
             dataset[i] = "item" + i;
         }
         // 创建Adapter，并指定数据集
-        MyAdapter adapter = new MyAdapter(dataset);
+        adapter = new MyAdapter(dataset, recyclerView, viewPager);
         // 设置Adapter
         recyclerView.setAdapter(adapter);
+//        recyclerView.setscr
 	}
 
 	@Override                                                                      
@@ -97,22 +107,27 @@ public class RecyclerViewActivity extends MyActivity{
 
 	@Override
 	protected void setListener() {
-		txtNext.setOnClickListener(new OnClickListener() {
+		viewPager.addOnPageChangeListener(new OnPageChangeListener() {
+			
 			@Override
-			public void onClick(View v) {
-				PopupMenu menu = new PopupMenu(mContext, txtNext);
-				menu.getMenuInflater().inflate(R.menu.popup_menu, menu.getMenu());
-				menu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-					@Override
-					public boolean onMenuItemClick(MenuItem arg0) {
-						// TODO Auto-generated method stub
-						return true;
-					}
-				});
-				menu.show();
+			public void onPageSelected(int position) {
+				//recyclerView.scrollToPosition(position);
+				recyclerView.smoothScrollToPosition(position);
+				adapter.changeSelectPage(position);
+			}
+			
+			@Override
+			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+				recyclerView.scrollTo(1, 0);
+				log_e("positionOffset" + positionOffset +", positionOffsetPixels" + positionOffsetPixels);
+			}
+			
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				// TODO Auto-generated method stub
+				
 			}
 		});
-		
 	}
 
 }

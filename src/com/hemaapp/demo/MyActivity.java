@@ -5,6 +5,7 @@ import xtom.frame.net.XtomNetWorker;
 import xtom.frame.util.XtomSharedPreferencesUtil;
 import android.content.Intent;
 
+import com.example.hm_m_demo.R;
 import com.hemaapp.demo.activity.LoginActivity;
 import com.hemaapp.demo.model.User;
 import com.hemaapp.hm_FrameWork.HemaActivity;
@@ -88,6 +89,12 @@ public abstract class MyActivity extends HemaActivity {
 			String key = "systype_" + user.getId();
 			XtomSharedPreferencesUtil.save(mContext, key, systype);
 		}
+	}
+	
+	@Override
+	protected boolean onKeyBack() {
+		finish(R.anim.none, R.anim.right_out);
+		return super.onKeyBack();
 	}
 	
 }

@@ -1,18 +1,12 @@
 package com.hemaapp.demo.activity;
 
 import com.example.hm_m_demo.R;
-import com.example.hm_m_demo.R.id;
-import com.example.hm_m_demo.R.layout;
-import com.example.hm_m_demo.R.menu;
 import com.hemaapp.demo.MyActivity;
 import com.hemaapp.hm_FrameWork.HemaNetTask;
 import com.hemaapp.hm_FrameWork.result.HemaBaseResult;
 
-import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,7 +15,7 @@ public class MainActivity extends MyActivity implements OnClickListener
 {
 
 	private Button btnUserCenter, btnCircleIndicator, btnMyRecyclerView, btnCanvas, btnColorEditor,
-		btnEditListView;
+		btnEditListView, btnImageActivity;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_main);
@@ -68,6 +62,7 @@ public class MainActivity extends MyActivity implements OnClickListener
 		btnCanvas = (Button)findViewById(R.id.btnCanvas);
 		btnColorEditor = (Button)findViewById(R.id.btnColorEditor);
 		btnEditListView = (Button)findViewById(R.id.btnEditListView);
+		btnImageActivity = (Button)findViewById(R.id.btnImageActivity);
 	}
 
 	@Override
@@ -84,6 +79,7 @@ public class MainActivity extends MyActivity implements OnClickListener
 		btnCanvas.setOnClickListener(this);
 		btnColorEditor.setOnClickListener(this);
 		btnEditListView.setOnClickListener(this);
+		btnImageActivity.setOnClickListener(this);
 	}
 
 	@Override
@@ -107,6 +103,11 @@ public class MainActivity extends MyActivity implements OnClickListener
 			break;
 		case R.id.btnEditListView:
 			intent.setClass(this, EditListViewActivity.class);
+			break;
+		case R.id.btnImageActivity:
+			intent.setClass(mContext, AlbumActivity.class);
+			intent.putExtra("limitCount", 8);// 图片选择张数限制
+			startActivityForResult(intent, 1);
 			break;
 		default:
 			intent = null;

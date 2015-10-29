@@ -54,6 +54,13 @@
 	            android:text="可编辑的列表"
 	            android:id="@+id/btnEditListView"
 	            />
+	        <Button 
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="照片"
+	            android:id="@+id/btnImageActivity"
+	            />
+	        
 	    </LinearLayout>
 	</ScrollView>
 

@@ -96,6 +96,11 @@
             android:label="@string/app_name"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"/>
+		<activity
+            android:name="com.hemaapp.demo.activity.AlbumActivity"
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"/>
 		
 		
 		
