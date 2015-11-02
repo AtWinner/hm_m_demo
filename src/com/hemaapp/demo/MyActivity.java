@@ -90,11 +90,39 @@ public abstract class MyActivity extends HemaActivity {
 			XtomSharedPreferencesUtil.save(mContext, key, systype);
 		}
 	}
+
+	// ------------------------下面填充项目自定义方法---------------------------
 	
-	@Override
-	protected boolean onKeyBack() {
-		finish(R.anim.none, R.anim.right_out);
-		return super.onKeyBack();
-	}
+		/**
+		 * 保存城市名称
+		 * 
+		 * @param cityName
+		 */
+		public void saveCityName(String cityName) {
+			XtomSharedPreferencesUtil.save(this, "city_name", cityName);
+		}
+
+		/**
+		 * @return 获取城市名称
+		 */
+		public String getCityName() {
+			return XtomSharedPreferencesUtil.get(this, "city_name");
+		}
+
+		/**
+		 * 保存城市id
+		 * 
+		 * @param cityId
+		 */
+		public void saveCityId(String cityId) {
+			XtomSharedPreferencesUtil.save(this, "city_id", cityId);
+		}
+
+		/**
+		 * @return 获取城市id
+		 */
+		public String getCityId() {
+			return XtomSharedPreferencesUtil.get(this, "city_id");
+		}
 	
 }

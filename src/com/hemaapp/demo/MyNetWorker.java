@@ -8,6 +8,7 @@ import android.content.Context;
 import com.hemaapp.MyConfig;
 import com.hemaapp.demo.nettask.ClientLoginTask;
 import com.hemaapp.demo.nettask.CurrentTask;
+import com.hemaapp.demo.nettask.DistrictListTask;
 import com.hemaapp.demo.nettask.InitTask;
 import com.hemaapp.hm_FrameWork.HemaNetWorker;
 /**
@@ -89,8 +90,19 @@ public class MyNetWorker extends HemaNetWorker {
 		MyNetTask task = new CurrentTask(information, params);
 		executeTask(task);
 	}
+	/**
+	 * 获取地区（城市）列表
+	 * @param parentid
+	 */
+	public void districtList(String parentid)
+	{
+		MyHttpInformation information = MyHttpInformation.DISTRICT_LIST;
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("parentid", parentid);
+		MyNetTask task = new DistrictListTask(information, params);
+		executeTask(task);
+	}
 	
-
 
 }
 

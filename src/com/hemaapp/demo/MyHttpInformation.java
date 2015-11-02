@@ -211,6 +211,10 @@ public enum MyHttpInformation implements HemaHttpInfomation {
 	 * 获取微信交易签名串接口
 	 */
 	WEIXINPAY_GET(48, "OnlinePay/Weixinpay/weixinpay_get.php", "获取微信交易签名串接口", false),
+	/**
+	 * 获取城市
+	 */
+	DISTRICT_LIST(49, "district_list", "获取城市", false),
 	
 	
 	

@@ -6,16 +6,21 @@ import com.hemaapp.hm_FrameWork.HemaNetTask;
 import com.hemaapp.hm_FrameWork.result.HemaBaseResult;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends MyActivity implements OnClickListener
 {
 
 	private Button btnUserCenter, btnCircleIndicator, btnMyRecyclerView, btnCanvas, btnColorEditor,
-		btnEditListView, btnImageActivity, btnVerticalViewPager, btnUnderlineDemoActivity;
+		btnEditListView, btnImageActivity, btnVerticalViewPager, btnUnderlineDemoActivity, btnDialog, 
+		btnAsyncTask, btnCity, btnHeadListview;
+	private View viewColor;
+	private RelativeLayout.LayoutParams params;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_main);
@@ -65,6 +70,12 @@ public class MainActivity extends MyActivity implements OnClickListener
 		btnImageActivity = (Button)findViewById(R.id.btnImageActivity);
 		btnVerticalViewPager = (Button)findViewById(R.id.btnVerticalViewPager);
 		btnUnderlineDemoActivity = (Button)findViewById(R.id.btnUnderlineDemoActivity);
+		btnDialog = (Button)findViewById(R.id.btnDialog);
+		btnAsyncTask = (Button)findViewById(R.id.btnAsyncTask);
+		viewColor = findViewById(R.id.viewColor);
+		params = (RelativeLayout.LayoutParams)viewColor.getLayoutParams();
+		btnCity = (Button)findViewById(R.id.btnCity);
+		btnHeadListview = (Button)findViewById(R.id.btnHeadListview);
 	}
 
 	@Override
@@ -84,6 +95,10 @@ public class MainActivity extends MyActivity implements OnClickListener
 		btnImageActivity.setOnClickListener(this);
 		btnVerticalViewPager.setOnClickListener(this);
 		btnUnderlineDemoActivity.setOnClickListener(this);
+		btnDialog.setOnClickListener(this);
+		btnAsyncTask.setOnClickListener(this);
+		btnCity.setOnClickListener(this);
+		btnHeadListview.setOnClickListener(this);
 	}
 
 	@Override
@@ -116,6 +131,19 @@ public class MainActivity extends MyActivity implements OnClickListener
 		case R.id.btnUnderlineDemoActivity:
 			intent.setClass(this, UnderlineDemoActivity.class);
 			break;
+		case R.id.btnDialog:
+			intent.setClass(this, DialogActivity.class);
+			break;
+		case R.id.btnAsyncTask:
+			testAsyncTask();
+			intent = null;
+			break;
+		case R.id.btnCity:
+			intent.setClass(this, CityActivity.class);
+			break;
+		case R.id.btnHeadListview:
+			intent.setClass(this, HeadListviewActivity.class);
+			break;
 		default:
 			intent = null;
 			break;
@@ -124,6 +152,77 @@ public class MainActivity extends MyActivity implements OnClickListener
 		{
 			startActivity(intent);
 			overridePendingTransition(R.anim.right_in, R.anim.none);
+		}
+	}
+	
+	private void testAsyncTask()
+	{
+		if(IsOpen)
+		{
+			(new LabelScrollTask()).execute(-15);
+			IsOpen = false;
+		}
+		else
+		{
+			(new LabelScrollTask()).execute(15);
+			IsOpen = true;
+		}
+	}
+	private Boolean IsOpen = false;//记录Label是否打开
+	private int Height = 0;
+	private int MaxHeight = 200;//记录Label展示是实际高度
+	
+	private class LabelScrollTask extends AsyncTask<Integer, Integer, Integer>
+	{
+
+		@Override
+		protected Integer doInBackground(Integer... speed) {
+			int  myLabelHeight =IsOpen ? Height : MaxHeight;
+			while(true)
+			{
+				myLabelHeight = myLabelHeight + speed[0];
+				if (myLabelHeight < Height) 
+				{
+					myLabelHeight = Height;
+					break;
+				}
+				if (myLabelHeight > MaxHeight) 
+				{
+					myLabelHeight = MaxHeight;
+					break;
+				}
+				publishProgress(myLabelHeight);
+				// 为了要有滚动效果产生，每次循环使线程睡眠2毫秒，这样肉眼才能够看到滚动动画。
+				sleep(1);
+			}
+			return myLabelHeight;
+		}
+		@Override
+		protected void onProgressUpdate(Integer... height) {
+			params.height = height[0];
+			viewColor.setLayoutParams(params);
+			super.onProgressUpdate(height);
+		}
+		
+		@Override
+		protected void onPostExecute(Integer height) {
+			params.height = height;
+			viewColor.setLayoutParams(params);
+			super.onPostExecute(height);
+		}
+	}
+
+	/**
+	 * 使当前线程睡眠指定的毫秒数。
+	 * 
+	 * @param millis
+	 *            指定当前线程睡眠多久，以毫秒为单位
+	 */
+	private void sleep(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 }

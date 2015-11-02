@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 /**
  * 用户信息数据库帮助类
  */
-public class UserDBHelper extends GtsdpDBHelper {
+public class UserDBHelper extends DBHelper {
 	String tableName = USER;
 
 	String columns = "id,username,email,password,nickname,charindex,sex,mobile,age,selfsign,avatar,birthday,avatarbig,backimg,"

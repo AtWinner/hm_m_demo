@@ -1,0 +1,31 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.achep.header2actionbardemo.MainActivity"
+        tools:ignore="MergeRootFrame" >
+    </FrameLayout>
+    <include layout="@layout/header_quit_text_text" />
+
+</RelativeLayout>
+<!--
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.achep.header2actionbardemo.MainActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <include layout="@layout/header_quit_text_text" />
+
+</FrameLayout>
+-->

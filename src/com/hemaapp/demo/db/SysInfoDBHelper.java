@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 /**
  * 系统初始化信息数据库帮助类
  */
-public class SysInfoDBHelper extends GtsdpDBHelper {
+public class SysInfoDBHelper extends DBHelper {
 	String tableName = SYSINITINFO;
 
 	String columns = "sys_web_service,sys_plugins,android_must_update,android_last_version,iphone_must_update,"

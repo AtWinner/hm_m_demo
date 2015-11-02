@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * 
  */
-public class GtsdpDBHelper extends SQLiteOpenHelper {
+public class DBHelper extends SQLiteOpenHelper {
 	private static final String DBNAME = "demo.db";
 	/**
 	 * 系统初始化信息
@@ -17,8 +17,12 @@ public class GtsdpDBHelper extends SQLiteOpenHelper {
 	 * 当前登录用户信息
 	 */
 	protected static final String USER = "user";
+	/**
+	 * 访问城市缓存信息
+	 */
+	protected static final String VISIT_CITYS = "visit_citys";
 
-	public GtsdpDBHelper(Context context) {
+	public DBHelper(Context context) {
 		super(context, DBNAME, null, 1);
 	}
 
@@ -39,6 +43,11 @@ public class GtsdpDBHelper extends SQLiteOpenHelper {
 				+ "bankcard text,bankaddress text,transflag text,checkflag text,role text";
 		String userSQL = "create table " + USER + " (" + user + ")";
 		db.execSQL(userSQL);
+		// 创建访问城市缓存表
+				String citys = "id text primary key,name text,parentid text,nodepath text,"
+						+ "namepath text,charindex text,level text,orderby text";
+				String citysSQL = "create table " + VISIT_CITYS + " (" + citys + ")";
+				db.execSQL(citysSQL);
 	}
 
 	@Override

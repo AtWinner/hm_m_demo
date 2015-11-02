@@ -72,8 +72,38 @@
 	            android:text="ViewPager_With_Underline"
 	            android:id="@+id/btnUnderlineDemoActivity"
 	            />
+	        <Button 
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="Dialog"
+	            android:id="@+id/btnDialog"
+	            />
+	        <Button 
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="AsyncTask"
+	            android:id="@+id/btnAsyncTask"
+	            />
+	        <Button 
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="城市"
+	            android:id="@+id/btnCity"
+	            />
+	        <Button 
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="HeadListview"
+	            android:id="@+id/btnHeadListview"
+	            />
 	        
 	    </LinearLayout>
 	</ScrollView>
-
+	<View 
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:id="@+id/viewColor"
+	    android:background="@color/main_blue"
+	    android:layout_alignParentBottom="true"
+	    />
 </RelativeLayout>

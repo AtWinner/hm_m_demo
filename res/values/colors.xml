@@ -91,4 +91,6 @@
     <color name="orange">#FEAF00</color>
     <color name="main_title_grey">#E5E9EA</color>
     <color name="picker_bg">#e0e0e0</color>
+    <color name="actionbar_bg">#0099CC</color>
+
 </resources>
