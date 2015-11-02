@@ -60,6 +60,18 @@
 	            android:text="照片"
 	            android:id="@+id/btnImageActivity"
 	            />
+	        <Button 
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="Vertical_ViewPager"
+	            android:id="@+id/btnVerticalViewPager"
+	            />
+	        <Button 
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="ViewPager_With_Underline"
+	            android:id="@+id/btnUnderlineDemoActivity"
+	            />
 	        
 	    </LinearLayout>
 	</ScrollView>

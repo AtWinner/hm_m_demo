@@ -15,7 +15,7 @@ public class MainActivity extends MyActivity implements OnClickListener
 {
 
 	private Button btnUserCenter, btnCircleIndicator, btnMyRecyclerView, btnCanvas, btnColorEditor,
-		btnEditListView, btnImageActivity;
+		btnEditListView, btnImageActivity, btnVerticalViewPager, btnUnderlineDemoActivity;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_main);
@@ -63,6 +63,8 @@ public class MainActivity extends MyActivity implements OnClickListener
 		btnColorEditor = (Button)findViewById(R.id.btnColorEditor);
 		btnEditListView = (Button)findViewById(R.id.btnEditListView);
 		btnImageActivity = (Button)findViewById(R.id.btnImageActivity);
+		btnVerticalViewPager = (Button)findViewById(R.id.btnVerticalViewPager);
+		btnUnderlineDemoActivity = (Button)findViewById(R.id.btnUnderlineDemoActivity);
 	}
 
 	@Override
@@ -80,6 +82,8 @@ public class MainActivity extends MyActivity implements OnClickListener
 		btnColorEditor.setOnClickListener(this);
 		btnEditListView.setOnClickListener(this);
 		btnImageActivity.setOnClickListener(this);
+		btnVerticalViewPager.setOnClickListener(this);
+		btnUnderlineDemoActivity.setOnClickListener(this);
 	}
 
 	@Override
@@ -91,9 +95,6 @@ public class MainActivity extends MyActivity implements OnClickListener
 			break;
 		case R.id.btnMyRecyclerView:
 			intent.setClass(this, RecyclerViewActivity.class);
-			break;
-		case R.id.btnCircleIndicator:
-			intent.setClass(this, CircleIndicatorActivity.class);
 			break;
 		case R.id.btnCanvas:
 			intent.setClass(this, CanvasActivity.class);
@@ -108,6 +109,12 @@ public class MainActivity extends MyActivity implements OnClickListener
 			intent.setClass(mContext, AlbumActivity.class);
 			intent.putExtra("limitCount", 8);// 图片选择张数限制
 			startActivityForResult(intent, 1);
+			break;
+		case R.id.btnVerticalViewPager:
+			intent.setClass(this, VerticalViewPagerActivity.class);
+			break;
+		case R.id.btnUnderlineDemoActivity:
+			intent.setClass(this, UnderlineDemoActivity.class);
 			break;
 		default:
 			intent = null;
