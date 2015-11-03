@@ -1,26 +1,39 @@
 package com.hemaapp.demo.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.hm_m_demo.R;
 import com.hemaapp.demo.MyActivity;
+import com.hemaapp.demo.MyAdapter;
 import com.hemaapp.hm_FrameWork.HemaNetTask;
 import com.hemaapp.hm_FrameWork.result.HemaBaseResult;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-public class MainActivity extends MyActivity implements OnClickListener
+public class MainActivity extends MyActivity implements OnItemClickListener
 {
 
-	private Button btnUserCenter, btnCircleIndicator, btnMyRecyclerView, btnCanvas, btnColorEditor,
-		btnEditListView, btnImageActivity, btnVerticalViewPager, btnUnderlineDemoActivity, btnDialog, 
-		btnAsyncTask, btnCity, btnHeadListview;
+	private ListView mainListView;
 	private View viewColor;
 	private RelativeLayout.LayoutParams params;
+	private List<ItemModel> listData;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_main);
@@ -61,21 +74,25 @@ public class MainActivity extends MyActivity implements OnClickListener
 
 	@Override
 	protected void findView() {
-		btnUserCenter = (Button)findViewById(R.id.btnUserCenter);
-		btnCircleIndicator = (Button)findViewById(R.id.btnCircleIndicator);
-		btnMyRecyclerView = (Button)findViewById(R.id.btnMyRecyclerView);
-		btnCanvas = (Button)findViewById(R.id.btnCanvas);
-		btnColorEditor = (Button)findViewById(R.id.btnColorEditor);
-		btnEditListView = (Button)findViewById(R.id.btnEditListView);
-		btnImageActivity = (Button)findViewById(R.id.btnImageActivity);
-		btnVerticalViewPager = (Button)findViewById(R.id.btnVerticalViewPager);
-		btnUnderlineDemoActivity = (Button)findViewById(R.id.btnUnderlineDemoActivity);
-		btnDialog = (Button)findViewById(R.id.btnDialog);
-		btnAsyncTask = (Button)findViewById(R.id.btnAsyncTask);
-		viewColor = findViewById(R.id.viewColor);
-		params = (RelativeLayout.LayoutParams)viewColor.getLayoutParams();
-		btnCity = (Button)findViewById(R.id.btnCity);
-		btnHeadListview = (Button)findViewById(R.id.btnHeadListview);
+		findViewById(R.id.imageQuitActivity).setVisibility(View.INVISIBLE);
+		findViewById(R.id.txtNext).setVisibility(View.INVISIBLE);
+		((TextView)findViewById(R.id.txtTitle)).setText("MainList");
+		mainListView =(ListView)findViewById(R.id.mainListView); 
+		listData = new ArrayList<MainActivity.ItemModel>();
+		listData.add(new ItemModel("去个人中心", UserCenterActivity.class));
+		listData.add(new ItemModel("MyRecyclerView", RecyclerViewActivity.class));
+		listData.add(new ItemModel("Canvas", CanvasActivity.class));
+		listData.add(new ItemModel("ColorEditor", ColorEditorActivity.class));
+		listData.add(new ItemModel("可编辑的列表", EditListViewActivity.class));
+		listData.add(new ItemModel("Vertical_ViewPager", VerticalViewPagerActivity.class));
+		listData.add(new ItemModel("ViewPager_With_Underline", UnderlineDemoActivity.class));
+		listData.add(new ItemModel("Dialog", DialogActivity.class));
+		listData.add(new ItemModel("城市", CityActivity.class));
+		listData.add(new ItemModel("HeadListview", HeadListviewActivity.class));
+		listData.add(new ItemModel("SweetDialog", SweetDialogActivity.class));
+
+		mainListView.setAdapter(new MainAdapter(mContext));
+		
 	}
 
 	@Override
@@ -86,143 +103,70 @@ public class MainActivity extends MyActivity implements OnClickListener
 
 	@Override
 	protected void setListener() {
-		btnUserCenter.setOnClickListener(this);
-		btnCircleIndicator.setOnClickListener(this);
-		btnMyRecyclerView.setOnClickListener(this);
-		btnCanvas.setOnClickListener(this);
-		btnColorEditor.setOnClickListener(this);
-		btnEditListView.setOnClickListener(this);
-		btnImageActivity.setOnClickListener(this);
-		btnVerticalViewPager.setOnClickListener(this);
-		btnUnderlineDemoActivity.setOnClickListener(this);
-		btnDialog.setOnClickListener(this);
-		btnAsyncTask.setOnClickListener(this);
-		btnCity.setOnClickListener(this);
-		btnHeadListview.setOnClickListener(this);
+		mainListView.setOnItemClickListener(this);
+		
 	}
 
 	@Override
-	public void onClick(View v) {
-		Intent intent = new Intent();
-		switch (v.getId()) {
-		case R.id.btnUserCenter:
-			intent.setClass(this, UserCenterActivity.class);
-			break;
-		case R.id.btnMyRecyclerView:
-			intent.setClass(this, RecyclerViewActivity.class);
-			break;
-		case R.id.btnCanvas:
-			intent.setClass(this, CanvasActivity.class);
-			break;
-		case R.id.btnColorEditor:
-			intent.setClass(this, ColorEditorActivity.class);
-			break;
-		case R.id.btnEditListView:
-			intent.setClass(this, EditListViewActivity.class);
-			break;
-		case R.id.btnImageActivity:
-			intent.setClass(mContext, AlbumActivity.class);
-			intent.putExtra("limitCount", 8);// 图片选择张数限制
-			startActivityForResult(intent, 1);
-			break;
-		case R.id.btnVerticalViewPager:
-			intent.setClass(this, VerticalViewPagerActivity.class);
-			break;
-		case R.id.btnUnderlineDemoActivity:
-			intent.setClass(this, UnderlineDemoActivity.class);
-			break;
-		case R.id.btnDialog:
-			intent.setClass(this, DialogActivity.class);
-			break;
-		case R.id.btnAsyncTask:
-			testAsyncTask();
-			intent = null;
-			break;
-		case R.id.btnCity:
-			intent.setClass(this, CityActivity.class);
-			break;
-		case R.id.btnHeadListview:
-			intent.setClass(this, HeadListviewActivity.class);
-			break;
-		default:
-			intent = null;
-			break;
-		}
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		Intent intent = new Intent(this, listData.get(position).nextActivity);
 		if(intent != null)
 		{
 			startActivity(intent);
-			overridePendingTransition(R.anim.right_in, R.anim.none);
-		}
-	}
-	
-	private void testAsyncTask()
-	{
-		if(IsOpen)
-		{
-			(new LabelScrollTask()).execute(-15);
-			IsOpen = false;
-		}
-		else
-		{
-			(new LabelScrollTask()).execute(15);
-			IsOpen = true;
-		}
-	}
-	private Boolean IsOpen = false;//记录Label是否打开
-	private int Height = 0;
-	private int MaxHeight = 200;//记录Label展示是实际高度
-	
-	private class LabelScrollTask extends AsyncTask<Integer, Integer, Integer>
-	{
-
-		@Override
-		protected Integer doInBackground(Integer... speed) {
-			int  myLabelHeight =IsOpen ? Height : MaxHeight;
-			while(true)
-			{
-				myLabelHeight = myLabelHeight + speed[0];
-				if (myLabelHeight < Height) 
-				{
-					myLabelHeight = Height;
-					break;
-				}
-				if (myLabelHeight > MaxHeight) 
-				{
-					myLabelHeight = MaxHeight;
-					break;
-				}
-				publishProgress(myLabelHeight);
-				// 为了要有滚动效果产生，每次循环使线程睡眠2毫秒，这样肉眼才能够看到滚动动画。
-				sleep(1);
-			}
-			return myLabelHeight;
-		}
-		@Override
-		protected void onProgressUpdate(Integer... height) {
-			params.height = height[0];
-			viewColor.setLayoutParams(params);
-			super.onProgressUpdate(height);
+			overridePendingTransition(R.anim.right_in, R.anim.left_out);
 		}
 		
-		@Override
-		protected void onPostExecute(Integer height) {
-			params.height = height;
-			viewColor.setLayoutParams(params);
-			super.onPostExecute(height);
+	}
+	private class ItemModel 
+	{
+		public String Text;
+		public Class<?> nextActivity;
+		public ItemModel (String Text, Class<?> nextActivity)
+		{
+			this.nextActivity = nextActivity;
+			this.Text = Text;
 		}
+	}
+	
+	private class MainAdapter extends MyAdapter
+	{
+		public MainAdapter(Context mContext) {
+			super(mContext);
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public int getCount() {
+			int count = listData == null ? 0 : listData.size();
+			return count;
+		}
+
+		@Override
+		public Object getItem(int position) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			if(convertView == null)
+			{
+				convertView =  LayoutInflater.from(mContext).inflate(R.layout.listitem_main, null);
+			}
+			TextView txtMain = (TextView)convertView.findViewById(R.id.txtMain);
+			txtMain.setText(listData.get(position).Text);
+			return convertView;
+		}
+		
 	}
 
-	/**
-	 * 使当前线程睡眠指定的毫秒数。
-	 * 
-	 * @param millis
-	 *            指定当前线程睡眠多久，以毫秒为单位
-	 */
-	private void sleep(long millis) {
-		try {
-			Thread.sleep(millis);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+	
+	
 }

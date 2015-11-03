@@ -38,4 +38,5 @@
     <style name="Header.SubTitleText" parent="Header.TitleText">
         <item name="android:textSize">16sp</item>
     </style>
+    
 </resources>
