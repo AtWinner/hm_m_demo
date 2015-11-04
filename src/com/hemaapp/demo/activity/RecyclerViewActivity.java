@@ -79,7 +79,7 @@ public class RecyclerViewActivity extends MyFragmentActivity{
 		txtTitle.setText("RecyclerView");
 		viewPager = (ViewPager)findViewById(R.id.viewPager);
 		viewPager.setAdapter(new RecyclerViewAdapter(getSupportFragmentManager(), LENGTH));
-		recyclerView = (RecyclerView)findViewById(R.id.recyclerview_vertical);
+		recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
 		 // 创建一个线性布局管理器
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         // 默认是Vertical，可以不写

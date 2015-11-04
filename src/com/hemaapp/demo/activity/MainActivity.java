@@ -90,7 +90,9 @@ public class MainActivity extends MyActivity implements OnItemClickListener
 		listData.add(new ItemModel("城市", CityActivity.class));
 		listData.add(new ItemModel("HeadListview", HeadListviewActivity.class));
 		listData.add(new ItemModel("SweetDialog", SweetDialogActivity.class));
-
+		listData.add(new ItemModel("RecyclerView", RecyclerViewActivityNew.class));
+		listData.add(new ItemModel("伪瀑布流", RecyclerViewActivityStagger.class));
+		listData.add(new ItemModel("测试ActionBar", mActionBar.class));
 		mainListView.setAdapter(new MainAdapter(mContext));
 		
 	}

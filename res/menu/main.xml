@@ -1,12 +1,41 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.hm_m_demo.MainActivity" >
+    <item
+        android:id="@+id/action_Add"
+        android:title="Add"
+        android:icon="@drawable/ic_menu_add"
+        android:showAsAction="always"/>
+    <item
+        android:id="@+id/action_Delete"
+        android:title="Delete"
+        android:icon="@drawable/ic_menu_delete"
+        android:showAsAction="always"/>
+    <item
+        android:id="@+id/action_Change"
+        android:title="Change"
+        android:icon="@drawable/circle_checked"
+        android:showAsAction="always"/>
 
     <item
+        android:id="@+id/action_ListView"
+        android:title="ListView"
+        android:showAsAction="never"/>
+    <item
+        android:id="@+id/action_GridView"
+        android:title="GridView"
+        android:showAsAction="never"/>
+    <item
+        android:id="@+id/action_HorizontalGridView"
+        android:title="HorizontalGridView"
+        android:showAsAction="never"/>
+    <item
+        android:id="@+id/action_Staggered"
+        android:title="StaggeredGridView"
+        android:showAsAction="never"/>
+    <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="never"/>
+        android:showAsAction="never"/>
 
 </menu>

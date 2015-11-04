@@ -20,7 +20,9 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.WindowManager;
 
 
 /**
@@ -367,5 +369,31 @@ public class MyUtil {
     		Temp /= 2.0;
     		State++;
     	}
+    }
+    /**
+     * 获取屏幕宽度
+     * @param context
+     * @return
+     */
+    public static int getScreenWidth(Context context)
+    {
+    	WindowManager wm = (WindowManager) context
+                .getSystemService(Context.WINDOW_SERVICE);
+    	DisplayMetrics dm = new DisplayMetrics();
+    	wm.getDefaultDisplay().getMetrics(dm);
+    	return dm.widthPixels;
+    }
+    /**
+     * 获取屏幕高度
+     * @param context
+     * @return
+     */
+    public static int getScreenHeight(Context context)
+    {
+    	WindowManager wm = (WindowManager) context
+                .getSystemService(Context.WINDOW_SERVICE);
+    	DisplayMetrics dm = new DisplayMetrics();
+    	wm.getDefaultDisplay().getMetrics(dm);
+    	return dm.heightPixels;
     }
 }

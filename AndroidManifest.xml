@@ -5,7 +5,7 @@
     android:versionName="1.0.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="21" />
 <!-- permissions start -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -131,7 +131,22 @@
             android:label="@string/app_name"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"/>
-		
+		<activity
+            android:name="com.hemaapp.demo.activity.RecyclerViewActivityNew"
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+        	android:theme="@android:style/Theme.Holo.Light" />
+		<activity
+            android:name="com.hemaapp.demo.activity.RecyclerViewActivityStagger"
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+        	android:theme="@android:style/Theme.Holo.Light" />
+		<activity
+            android:name="com.hemaapp.demo.activity.mActionBar"
+            android:label="@string/app_name"
+        	android:theme="@android:style/Theme.Holo.NoActionBar" />
 		
     </application>
 
