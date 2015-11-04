@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" 
     android:background="#44ff0000"
     android:layout_margin="1dp"
+    android:id="@+id/father"
     >
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:adjustViewBounds="true" 
+        />
     <TextView 
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
         android:id="@+id/tv"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         />
 
-</FrameLayout>
+</LinearLayout>

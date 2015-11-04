@@ -1,21 +1,27 @@
 package com.hemaapp.demo.activity;
 
+import xtom.frame.image.cache.XtomImageCache;
+import xtom.frame.media.XtomVoicePlayer;
 import xtom.frame.util.XtomSharedPreferencesUtil;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import com.example.hm_m_demo.R;
 import com.hemaapp.demo.MyActivity;
 import com.hemaapp.demo.MyHttpInformation;
+import com.hemaapp.demo.MyUtil;
 import com.hemaapp.demo.dialog.MyTwoButtonDialog;
 import com.hemaapp.demo.dialog.MyTwoButtonDialog.OnButtonListener;
 import com.hemaapp.hm_FrameWork.HemaNetTask;
 import com.hemaapp.hm_FrameWork.result.HemaBaseResult;
 
 public class UserCenterActivity extends MyActivity implements OnClickListener {
-	private Button btnQuit;
+	private Button btnQuit, btnClear;
+	private String CacheSize;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_usercenter);
@@ -74,6 +80,7 @@ public class UserCenterActivity extends MyActivity implements OnClickListener {
 	@Override
 	protected void findView() {
 		btnQuit = (Button)findViewById(R.id.btnQuit);
+		btnClear = (Button)findViewById(R.id.btnClear);
 	}
 
 	@Override
@@ -85,6 +92,7 @@ public class UserCenterActivity extends MyActivity implements OnClickListener {
 	@Override
 	protected void setListener() {
 		btnQuit.setOnClickListener(this);
+		btnClear.setOnClickListener(this);
 	}
 
 	@Override
@@ -113,10 +121,39 @@ public class UserCenterActivity extends MyActivity implements OnClickListener {
 			});
 			dialog.show();
 			break;
-
+		case R.id.btnClear:
+			CacheSize = MyUtil.getCacheSize(mContext);
+			new ClearTask().execute();
+			break;
 		default:
 			break;
 		}
 	}
+	private class ClearTask extends AsyncTask<Void, Void, Void> {
 
+		@Override
+		protected Void doInBackground(Void... params) {
+			// É¾³ýÍ¼Æ¬»º´æ
+			XtomImageCache.getInstance(mContext).deleteCache();
+			// É¾³ýÓïÒô»º´æ
+			XtomVoicePlayer player = XtomVoicePlayer.getInstance(mContext);
+			player.deleteCache();
+			player.release();
+			return null;
+		}
+
+		@Override
+		protected void onPreExecute() {
+			showProgressDialog("ÕýÔÚÇå³ý»º´æ");
+		}
+		@Override
+		protected void onPostExecute(Void result) {
+			cancelProgressDialog();
+			SweetAlertDialog dialog = new SweetAlertDialog(mContext, SweetAlertDialog.SUCCESS_TYPE)
+            	.setConfirmText("È·¶¨");
+			dialog.setTitleText("Çå³ý" + CacheSize);
+			dialog.setCancelable(false);
+			dialog.show();
+		}
+	}
 }

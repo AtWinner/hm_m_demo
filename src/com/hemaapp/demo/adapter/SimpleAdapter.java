@@ -99,5 +99,4 @@ class MyViewHolder extends ViewHolder
 		super(itemView);
 		tv =(TextView)itemView.findViewById(R.id.tv);
 	}
-	
 }

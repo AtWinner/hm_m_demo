@@ -2,6 +2,7 @@ package com.hemaapp.demo;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,8 +12,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import xtom.frame.XtomActivityManager;
+import xtom.frame.image.cache.XtomImageCache;
 import xtom.frame.util.XtomBaseUtil;
 import xtom.frame.util.XtomTimeUtil;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.content.Context;
@@ -396,4 +399,32 @@ public class MyUtil {
     	wm.getDefaultDisplay().getMetrics(dm);
     	return dm.heightPixels;
     }
+    
+    public static String getCacheSize(Activity mContext)
+	{
+		double CacheSize = XtomImageCache.getInstance(mContext).getCacheSize();
+		int i =0;
+		while(CacheSize > 1024)
+		{
+			CacheSize /= 1024.0;
+			i++;
+		}
+		String CacheSizeStr;
+		DecimalFormat dcmFmt = new DecimalFormat("0.0");
+		switch (i) {
+		case 0:
+			CacheSizeStr = dcmFmt.format(CacheSize) + "B";
+			break;
+		case 1:
+			CacheSizeStr = dcmFmt.format(CacheSize) + "KB";
+			break;
+		case 2:
+			CacheSizeStr = dcmFmt.format(CacheSize) + "MB";
+			break;
+		default:
+			CacheSizeStr = dcmFmt.format(CacheSize) + "GB";
+			break;
+		}
+		return CacheSizeStr;
+	}
 }

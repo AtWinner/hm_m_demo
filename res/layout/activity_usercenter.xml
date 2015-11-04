@@ -9,5 +9,11 @@
         android:text="@string/quit"
         android:id="@+id/btnQuit"
         />
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/clear"
+        android:id="@+id/btnClear"
+        />
 
 </LinearLayout>
