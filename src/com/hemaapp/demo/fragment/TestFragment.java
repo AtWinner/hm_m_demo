@@ -25,8 +25,8 @@ public final class TestFragment extends Fragment {
 
         return fragment;
     }
-
-    private String mContent = "???";
+    
+    private String mContent = "111";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

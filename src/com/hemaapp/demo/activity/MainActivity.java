@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -77,6 +78,10 @@ public class MainActivity extends MyActivity implements OnItemClickListener
 		findViewById(R.id.imageQuitActivity).setVisibility(View.INVISIBLE);
 		findViewById(R.id.txtNext).setVisibility(View.INVISIBLE);
 		((TextView)findViewById(R.id.txtTitle)).setText("MainList");
+
+		Typeface fontFace = Typeface.createFromAsset(getAssets(),
+                "FZKT_GBK.TTF");
+		((TextView)findViewById(R.id.txtTitle)).setTypeface(fontFace);
 		mainListView =(ListView)findViewById(R.id.mainListView); 
 		listData = new ArrayList<MainActivity.ItemModel>();
 		listData.add(new ItemModel("去个人中心", UserCenterActivity.class));
@@ -92,7 +97,12 @@ public class MainActivity extends MyActivity implements OnItemClickListener
 		listData.add(new ItemModel("SweetDialog", SweetDialogActivity.class));
 		listData.add(new ItemModel("RecyclerView", RecyclerViewActivityNew.class));
 		listData.add(new ItemModel("伪瀑布流", RecyclerViewActivityStagger.class));
-		listData.add(new ItemModel("测试ActionBar", mActionBar.class));
+		listData.add(new ItemModel("测试ActionBar", MActionBarActivity.class));
+		listData.add(new ItemModel("上下关系两个布局", MultiPagesUpActivity.class));
+		listData.add(new ItemModel("FragmentManager", FragmentManagerActivity.class));
+		listData.add(new ItemModel("蓝牙", BlueToothActivity.class));
+		
+		
 		mainListView.setAdapter(new MainAdapter(mContext));
 		
 	}
@@ -116,7 +126,7 @@ public class MainActivity extends MyActivity implements OnItemClickListener
 		if(intent != null)
 		{
 			startActivity(intent);
-			overridePendingTransition(R.anim.right_in, R.anim.left_out);
+			overridePendingTransition(R.anim.right_in, R.anim.none);
 		}
 		
 	}

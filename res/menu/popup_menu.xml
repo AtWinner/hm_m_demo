@@ -4,7 +4,10 @@
 
     <item
         android:id="@+id/special_topic"
-        android:title="专题"/>
+        android:title="专题"
+        android:icon="@drawable/icon_jw_emotion_del_prs"
+        android:showAsAction="always"
+        />
     <item
         android:id="@+id/elite"
         android:title="精选"/>

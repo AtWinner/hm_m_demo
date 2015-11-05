@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <include layout="@layout/header_quit_text_text"/>
+    
+    <com.hemaapp.demo.view.MySwitchLoadLayout
+        android:id="@+id/mySwitchLoadLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+	    android:layout_weight="1">
+		<FrameLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:id="@+id/frameLayout"
+		    ></FrameLayout>
+	</com.hemaapp.demo.view.MySwitchLoadLayout>
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    >
+	    <Button 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="Page1"
+	        android:id="@+id/btnPage1"
+	        />
+	    <Button 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="Page2"
+	        android:id="@+id/btnPage2"
+	        />
+	    <Button 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="Page3"
+	        android:id="@+id/btnPage3"
+	        />
+	    <Button 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="Page4"
+	        android:id="@+id/btnPage4"
+	        />
+	</LinearLayout>
+</LinearLayout>
