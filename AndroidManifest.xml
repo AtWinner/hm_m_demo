@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.PERSISTENT_ACTIVITY" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    
+
     <!-- 蓝牙权限 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -61,6 +61,18 @@
             </intent-filter>
         </activity>
 
+        <receiver android:name="com.hemaapp.demo.activity.WidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider" />
+        </receiver>
+
+        <service android:name="com.hemaapp.demo.service.WidgetTimerService" >
+        </service>
         <!-- 高德地图ApiKey -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -177,8 +189,6 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
-        
-        
     </application>
 
 </manifest>
