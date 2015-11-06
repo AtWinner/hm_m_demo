@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    <include layout="@layout/header_quit_text_text"/>
     <com.hemaapp.demo.VerticalViewPager.VerticalViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
