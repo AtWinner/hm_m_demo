@@ -13,4 +13,5 @@
     <string name="askQuit">确定要退出登录吗？</string>
     <string name="progressQuit">退出中</string>
     <string name="haveNoUserInfo">无登录信息</string>
+    <string name="action_contact">Contact</string>
 </resources>

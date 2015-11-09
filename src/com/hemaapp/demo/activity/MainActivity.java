@@ -101,6 +101,10 @@ public class MainActivity extends MyActivity implements OnItemClickListener
 		listData.add(new ItemModel("上下关系两个布局", MultiPagesUpActivity.class));
 		listData.add(new ItemModel("FragmentManager", FragmentManagerActivity.class));
 		listData.add(new ItemModel("蓝牙", BlueToothActivity.class));
+		listData.add(new ItemModel("Spinner", SpinnerActivity.class));
+		listData.add(new ItemModel("SlidingMenu Custom", PropertiesActivity.class));
+		listData.add(new ItemModel("SlidingTab", SlidingTabActivity.class));
+		
 		
 		
 		mainListView.setAdapter(new MainAdapter(mContext));
