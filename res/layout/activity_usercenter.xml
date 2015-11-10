@@ -15,5 +15,8 @@
         android:text="@string/clear"
         android:id="@+id/btnClear"
         />
-
+	<SearchView 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    ></SearchView>
 </LinearLayout>

@@ -2,6 +2,11 @@ package com.hemaapp.demo.activity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import cn.pedant.SweetAlert.SweetAlertDialog.OnSweetClickListener;
 
 import com.example.hm_m_demo.R;
 import com.hemaapp.demo.MyActivity;
@@ -104,6 +109,8 @@ public class MainActivity extends MyActivity implements OnItemClickListener
 		listData.add(new ItemModel("Spinner", SpinnerActivity.class));
 		listData.add(new ItemModel("SlidingMenu Custom", PropertiesActivity.class));
 		listData.add(new ItemModel("SlidingTab", SlidingTabActivity.class));
+		listData.add(new ItemModel("CheckBox", AnimCheckBoxActivity.class));
+		listData.add(new ItemModel("CardViewActivity", CardViewActivity.class));
 		
 		
 		
@@ -130,7 +137,7 @@ public class MainActivity extends MyActivity implements OnItemClickListener
 		if(intent != null)
 		{
 			startActivity(intent);
-			overridePendingTransition(R.anim.right_in, R.anim.none);
+			overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
 		}
 		
 	}
@@ -180,9 +187,33 @@ public class MainActivity extends MyActivity implements OnItemClickListener
 			txtMain.setText(listData.get(position).Text);
 			return convertView;
 		}
-		
 	}
 
+	@Override
+	protected boolean onKeyBack() {
+		new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE)
+				.setTitleText("确定要退出吗？").setConfirmText("好的")
+				.setConfirmClickListener(new OnSweetClickListener() {
+
+					@Override
+					public void onClick(SweetAlertDialog sweetAlertDialog) {
+
+						new SweetAlertDialog(mContext, SweetAlertDialog.SUCCESS_TYPE)
+								.setTitleText("退出啦？")
+								.setConfirmText("好的")
+								.setConfirmClickListener(new OnSweetClickListener() {
+									
+									@Override
+									public void onClick(SweetAlertDialog sweetAlertDialog) {
+										finish();
+									}
+								})
+								.show();
+						
+					}
+				}).show();
+		return false;
+	}
 	
 	
 }
