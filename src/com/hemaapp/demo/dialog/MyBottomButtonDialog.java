@@ -19,36 +19,46 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class MyTwoVertivalButtonDialog extends XtomObject {
+public class MyBottomButtonDialog extends XtomObject {
 	private Context context;
 	private Dialog mDialog;
-	private Button btnUp;
-	private Button btnBottom;
+	private Button btnTop;
+	private Button btnMiddle;
+	private Button btnCancel;
 	private OnButtonListener buttonListener;
 
-	public MyTwoVertivalButtonDialog(Context context) {
+	public MyBottomButtonDialog(Context context) {
 		this.context = context;
 		mDialog = new Dialog(context, R.style.custom_dialog);
 		LayoutInflater inflater = LayoutInflater.from(context);
-		View view = inflater.inflate(R.layout.dialog_vertical_two_botton, null);
-		btnUp = (Button) view.findViewById(R.id.btnUp);
-		btnUp.setOnClickListener(new OnClickListener() {
-
+		View view = inflater.inflate(R.layout.dialog_bottom_three, null);
+		btnTop = (Button) view.findViewById(R.id.btnTop);
+		btnMiddle = (Button)view.findViewById(R.id.btnMiddle);
+		btnCancel = (Button) view.findViewById(R.id.btnCancel);
+		btnCancel.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				mDialog.cancel();
+			}
+		});
+		btnTop.setOnClickListener(new OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
 				if (buttonListener != null)
-					buttonListener.onUpButtonClick(MyTwoVertivalButtonDialog.this);
+					buttonListener.onTopButtonClick(MyBottomButtonDialog.this);
 			}
 		});
-		btnBottom = (Button) view.findViewById(R.id.btnBottom);
-		btnBottom.setOnClickListener(new OnClickListener() {
-
+		btnMiddle.setOnClickListener(new OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
 				if (buttonListener != null)
-					buttonListener.onBottomButtonClick(MyTwoVertivalButtonDialog.this);
+					buttonListener.onMiddleButtonClick(MyBottomButtonDialog.this);
 			}
 		});
+		
 		mDialog.setCancelable(true);
 		mDialog.setContentView(view);
 		
@@ -65,24 +75,24 @@ public class MyTwoVertivalButtonDialog extends XtomObject {
 		mDialog.setCancelable(cancelable);
 	}
 	
-	public void setUpButtonText(String text) {
-		btnUp.setText(text);
+	public void setTopButtonText(String text) {
+		btnTop.setText(text);
 	}
 
-	public void setUpButtonText(int textID) {
-		btnUp.setText(textID);
+	public void setTopButtonText(int textID) {
+		btnTop.setText(textID);
 	}
 
-	public void setBottomButtonText(String text) {
-		btnBottom.setText(text);
+	public void setMiddleButtonText(String text) {
+		btnMiddle.setText(text);
 	}
 
-	public void setBottomButtonText(int textID) {
-		btnBottom.setText(textID);
+	public void setMiddleButtonText(int textID) {
+		btnMiddle.setText(textID);
 	}
 
-	public void setBottomButtonTextColor(int color) {
-		btnBottom.setTextColor(color);
+	public void setMiddleButtonTextColor(int color) {
+		btnMiddle.setTextColor(color);
 	}
 
 	public void show() {
@@ -91,7 +101,7 @@ public class MyTwoVertivalButtonDialog extends XtomObject {
 		WindowManager windowManager = ((Activity)context).getWindowManager();
 		Display display = windowManager.getDefaultDisplay();
 		WindowManager.LayoutParams lp = mDialog.getWindow().getAttributes();
-		lp.width = (int)(display.getWidth() * 10 / 11); //设置宽度
+//		lp.width = (int)(display.getWidth() * 10 / 11); //设置宽度
 		mDialog.getWindow().setAttributes(lp);
 	}
 
@@ -108,9 +118,9 @@ public class MyTwoVertivalButtonDialog extends XtomObject {
 	}
 
 	public interface OnButtonListener {
-		public void onUpButtonClick(MyTwoVertivalButtonDialog dialog);
+		public void onTopButtonClick(MyBottomButtonDialog dialog);
 
-		public void onBottomButtonClick(MyTwoVertivalButtonDialog dialog);
+		public void onMiddleButtonClick(MyBottomButtonDialog dialog);
 	}
 
 }

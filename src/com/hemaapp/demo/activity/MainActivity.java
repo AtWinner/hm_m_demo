@@ -11,6 +11,8 @@ import cn.pedant.SweetAlert.SweetAlertDialog.OnSweetClickListener;
 import com.example.hm_m_demo.R;
 import com.hemaapp.demo.MyActivity;
 import com.hemaapp.demo.MyAdapter;
+import com.hemaapp.demo.dialog.MyBottomButtonDialog;
+import com.hemaapp.demo.dialog.MyTwoVertivalButtonDialog;
 import com.hemaapp.hm_FrameWork.HemaNetTask;
 import com.hemaapp.hm_FrameWork.result.HemaBaseResult;
 
@@ -32,8 +34,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
-public class MainActivity extends MyActivity implements OnItemClickListener
+public class MainActivity extends MyActivity implements OnItemClickListener, OnClickListener
 {
 
 	private ListView mainListView;
@@ -80,8 +83,8 @@ public class MainActivity extends MyActivity implements OnItemClickListener
 
 	@Override
 	protected void findView() {
+		((TextView)findViewById(R.id.txtNext)).setText("ºÇºÇ");
 		findViewById(R.id.imageQuitActivity).setVisibility(View.INVISIBLE);
-		findViewById(R.id.txtNext).setVisibility(View.INVISIBLE);
 		((TextView)findViewById(R.id.txtTitle)).setText("MainList");
 
 		Typeface fontFace = Typeface.createFromAsset(getAssets(),
@@ -111,6 +114,8 @@ public class MainActivity extends MyActivity implements OnItemClickListener
 		listData.add(new ItemModel("SlidingTab", SlidingTabActivity.class));
 		listData.add(new ItemModel("CheckBox", AnimCheckBoxActivity.class));
 		listData.add(new ItemModel("CardViewActivity", CardViewActivity.class));
+		listData.add(new ItemModel("Ò¡Ò»Ò¡", SensorTestActivity.class));
+		listData.add(new ItemModel("µ×²¿µÄDialog", BottomDialogActivity.class));
 		
 		
 		
@@ -127,12 +132,14 @@ public class MainActivity extends MyActivity implements OnItemClickListener
 	@Override
 	protected void setListener() {
 		mainListView.setOnItemClickListener(this);
-		
+		findViewById(R.id.txtNext).setOnClickListener(this);
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
+		if(listData.get(position).nextActivity == null)
+			return;
 		Intent intent = new Intent(this, listData.get(position).nextActivity);
 		if(intent != null)
 		{
@@ -151,7 +158,22 @@ public class MainActivity extends MyActivity implements OnItemClickListener
 			this.Text = Text;
 		}
 	}
-	
+
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.txtNext:
+			MyBottomButtonDialog dialog = new MyBottomButtonDialog(mContext);
+			dialog.setCancelable(false);
+			dialog.show();
+			break;
+
+		default:
+			break;
+		}
+		
+	}
 	private class MainAdapter extends MyAdapter
 	{
 		public MainAdapter(Context mContext) {

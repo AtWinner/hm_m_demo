@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<RelativeLayout   
+    xmlns:android="http://schemas.android.com/apk/res/android"  
+    android:layout_width="match_parent"  
+    android:layout_height="wrap_content"  
+    android:gravity="center_horizontal"  
+    android:orientation="vertical"  
+    android:background="#00000000"
+	>  
+	<LinearLayout   
+	    android:id="@+id/pop_layout"  
+	    android:layout_width="fill_parent"  
+	    android:layout_height="wrap_content"  
+	    android:gravity="center_horizontal"  
+	    android:orientation="vertical"  
+    	android:background="#00000000"
+	    >  
+  
+		<LinearLayout 
+			android:layout_width="match_parent"
+          	android:layout_height="wrap_content"
+          	android:orientation="vertical"
+	    	android:background="@drawable/bg_linearlayout"
+          >
+		    <Button  
+		        android:id="@+id/btnTop"  
+		        android:layout_width="match_parent"  
+		        android:layout_height="wrap_content"  
+		        android:text="手机号码找回"  
+		        android:background="@drawable/bg_button_dialog"
+                android:textSize="@dimen/textsize_8"
+		         />  
+	  		<LinearLayout 
+	  		    android:layout_width="match_parent"
+	  		    android:layout_height="1dp"
+	  		    android:background="@color/grey_line"
+	  		    ></LinearLayout>
+		    <Button  
+		        android:id="@+id/btnMiddle"  
+		         android:layout_width="match_parent"  
+		        android:layout_height="wrap_content"  
+		        android:text="邮箱找回"  
+		        android:background="@drawable/bg_button_dialog"
+                android:textSize="@dimen/textsize_8"
+		         />  
+		</LinearLayout>
+	    
+  
+	    <Button  
+	        android:id="@+id/btnCancel"  
+	       	android:layout_marginTop="15dip"   
+	       	android:layout_marginBottom="15dip"  
+	       	android:layout_width="fill_parent"  
+	       	android:layout_height="wrap_content"  
+	       	android:text="取消"  
+	       	android:textColor="@color/main_blue"  
+	        android:background="@drawable/bg_button_dialog"
+            android:textSize="@dimen/textsize_8"
+	        />  
+	</LinearLayout>  
+</RelativeLayout>  
